@@ -17,9 +17,6 @@ export default function page() {
     password: z.string().min(6, {
       message: "Password is needed",
     }),
-    confirmPassword: z.string().min(6, {
-      message: "Password is needed",
-    }),
   });
 
   const {
@@ -32,7 +29,6 @@ export default function page() {
       fullname: "",
       email: "",
       password: "",
-      confirmPassword: "",
     },
   });
 
@@ -43,7 +39,7 @@ export default function page() {
   return (
     <>
       <section className="w-full h-full min-h-screen flex items-center justify-center bg-background_main">
-        <section className="w-full h-[490px] bg-background_secondary max-w-[450px] rounded-lg p-4 flex flex-col gap-2 items-center justify-center text-white">
+        <section className="w-full h-[590px] bg-background_secondary max-w-[450px] rounded-lg p-4 flex flex-col gap-2 items-center justify-center text-white">
           <div className="w-full flex flex-col items-start ml-[10px] mt-4 gap-1">
             <Link
               href="/"
@@ -66,9 +62,14 @@ export default function page() {
             <input
               className="input_main"
               defaultValue=""
-              placeholder="Enter your fullname"
+              placeholder="Enter your name"
               {...register("fullname")}
             />
+            {errors.fullname && (
+              <span className="w-full flex items-start ml-10 text-red-500">
+                {errors.fullname.message}
+              </span>
+            )}
             <label className="w-full flex items-start ml-10" htmlFor="_email">
               Email
             </label>
@@ -91,7 +92,7 @@ export default function page() {
               Password
             </label>
             <input
-              className="input_main"
+              className="input_main "
               type="password"
               placeholder="Password"
               {...register("password")}
@@ -103,11 +104,10 @@ export default function page() {
             )}
 
             <input
-              className="bnt_main cursor-pointer"
+              className="bnt_main cursor-pointer mt-4"
               type="submit"
               value={"Sign up"}
             />
-
             <div>
               <p>
                 Have an account?{" "}
